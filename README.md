@@ -17,7 +17,7 @@ An analytical report on the Bigfoot sighting incidents documented by the BFRO (B
 
 ## Programming Languages and Tools
 - **Python**: For data cleaning and exploratory data analysis, filtering data to state level, and caculate total methane emissions.
-- **Regex**: For text processing and pattern matching.
+- **RStudio**: For census data collection
 - **HTML**: For parsing and extracting data from web pages.
 - **QGIS**: 
   - To draw the map of California.
@@ -29,48 +29,35 @@ An analytical report on the Bigfoot sighting incidents documented by the BFRO (B
 ## Process Summary
 
 ### Data Processing
+0. **Story-Inspiration**:
+    - I was inspired by reports on testile waste landfill report, mentioning that landills are three times more likely to appear near a BICOP community, so I decided to investigate the story of trash.
+
 1. **Data Collection**:
-   - Scrape data from the BFRO website ([link](https://www.bfro.net/gdb/)) using BeautifulSoup.
-   - Extract the following details for each county:
-     - County name
-     - Number of listings
-     - Most recent report date
-     - Last posted date
-     - Link to detailed reports
+   - Get data from EPA LMOP website ([Link](https://www.epa.gov/lmop/project-and-landfill-data-state))
+   - Use Python to download and parse the data from the website.
+   - Extract relevant information such as landfill name, location, waste in place, and estimated methane emissions.
 
-2. **Detailed Data Extraction**:
-   - Loop through each county link to access detailed sighting pages.
-   - Scrape additional information such as:
-     - Sighting class (Class A/B)
-     - Date of sighting
-     - Exact location details
+2. **Data Cleaning - identify the focus**:
+   - Conduct an exploratory data analysis to identify the state with the highest number of landfill sites and greatest problems with methane emissions.
+      - Calculate the total methane emissions for each state using the waste in place and estimated methane emissions per ton of waste.
+   - Identified California as the state with the most landfill sites and the highest methane emissions.
 
-3. **Geocoding**:
-   - Use Google GeoAPI to obtain latitude and longitude coordinates for each sighting location.
-   - Use the FCC Area API to retrieve FIPS codes for each county.
+3. **Map the Distribution**:
+   - Use Census RStutio to get census data of California.
+   - save the CA data to a geojson file.
 
 ### Mapping
-1. **Choropleth Map**:
-   - Use Datawrapper to create a choropleth map showing the distribution of sightings across the US.
-   - Apply a color gradient to represent the number of sightings per region.
-
-2. **Washington State Locator Map**:
-   - Focus on Washington State, which has the highest number of reported sightings.
-   - Download forest coverage data from the US Forest Service ([link](https://data-usfs.hub.arcgis.com/datasets/usfs::forest-administrative-boundaries-feature-layer/explore)).
-   - Narrow down the GeoJSON file to include only forests in Washington State.
-   - Simplify the GeoJSON file using Mapshaper to reduce its size to under 2MB.
-   - Add forest coverage data to the locator map.
-   - Filter sightings in Washington State using Python and add markers to areas with lower forest coverage.
+1. **QGIS**:
+   - Use QGIS to create a symbol map - landfill sites in California
+   - Use illustrator to convert red dots to the symbol of trash cans. 
+   - Use illustrator to create a responsive graph with ai2html
 
 ### Charts
 - Use Datawrapper to create:
-  - A bar chart showing the number of sightings by state.
-  - A line area chart illustrating chronological changes in sighting reports over time.
+  - A pie chart showing the methane sources in CA
+  - A range plot showing the time span of the landfill sites operation.
 
-### Reporting
-- Conducted an interview with Matt Moneymaker, the president and founder of the BFRO, to gain insights into the data collection process and the organization's methodology.
 
 ## Discussion
-- The analysis reveals interesting patterns in Bigfoot sightings, particularly in regions with varying forest coverage.
-- Future research could focus on specific case studies, such as sightings in Central America, where forest coverage is lower, to explore potential correlations between habitat and sighting frequency.
-- Limitations in the data, such as reporting biases or incomplete evidence, should be addressed in further studies.
+- The analysis reveals the urgency of California's trash crisis.
+- Next report will be risk analysis and regression to test the relationship between ethnicities the landfill sites.
