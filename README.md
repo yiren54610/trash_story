@@ -1,7 +1,7 @@
 # Trash Crisis In California
 
 ## Link to the Page
-[Final Report](https://yiren54610.github.io/Bigfoot/)
+[Final Story](https://yiren54610.github.io/trash_story/)
 [Landfill Methane Outreach Program (LMOP)](https://www.epa.gov/lmop/project-and-landfill-data-state)
 
 ## Update
